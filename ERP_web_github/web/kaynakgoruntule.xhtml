@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <style>
+            .forhead{
+                background-color:#4469aa ;
+                color: #ffffff;
+                border-radius: 12px;
+            }
+           tbody>tr>td{
+                background-color: #80a5e5;
+                font-size: 18px;
+                color:white ;
+                border-radius: 5px;
+                text-align: center;
+            
+            }
+            .btn{
+               
+           font-weight: 400;
+           color: white;
+           background-color: #4469aa ;
+           border: none;
+           border-radius: 1.5rem;
+           width: 70%;
+           padding:7%;
+           cursor: pointer;
+           
+           
+            }
+            .btnduz{
+           font-weight: 600;
+           color: white;
+           background-color:#374088 ;
+           border: none;
+           border-radius: 1.4rem;
+           width: 10%;
+           padding:1%;
+           cursor: pointer;
+            }
+        </style>
+        <title>Urun Verileri</title>
+    </h:head>
+    <h:body style=" background-color:azure;">
+        
+            
+        <h:dataTable value="#{bean.kaynakgoruntule()}" var="myvariable"
+                     border="0" cellpadding="0" cellspacing="2" style="  font-size: 19px; width: 68%; margin-left:16%;">
+            
+            <h:column headerClass="forhead" >
+            <f:facet name="header">URUNADI</f:facet>
+    #{myvariable.urunadi}
+     </h:column>
+                
+            <h:column headerClass="forhead">
+     <f:facet name="header" class="hdr">STOK</f:facet>
+ #{myvariable.stok}
+  </h:column>
+ 
+            <h:column class="clmn">
+          <h:form>
+              <h:commandButton  value="Bu ürünü sil" class="btn" action="#{bean.sil()}">
+                  <f:setPropertyActionListener target="#{bean.silinecek_urun}" value="#{myvariable.urunadi}" />
+              </h:commandButton>
+           </h:form>
+      </h:column>
+            <h:column class="clmn">
+          <h:form>
+              <h:commandButton  value="Stoktan azalt"  class="btn" action="#{bean.stoktanazalt()}">
+                  <f:setPropertyActionListener target="#{bean.silinecek_urun}" value="#{myvariable.urunadi}" />
+              </h:commandButton>
+           </h:form>
+           <h:form>
+              <h:commandButton  value="Urun Ekle" class="btn" action="#{bean.stokarttir()}">
+                  <f:setPropertyActionListener target="#{bean.silinecek_urun}" value="#{myvariable.urunadi}" />
+              </h:commandButton>
+           </h:form>
+      </h:column>
+        
+ </h:dataTable>
+            
+        <br/><h:button style="margin-left:16%;" class="btnduz" outcome="islem.xhtml" value="GERI DON" /><br></br>
+        <br/><h:outputText  style="color:red; margin-left:16%;"  value="#{bean.uyari1}" />
+       
+    </h:body>
+</html>
+
